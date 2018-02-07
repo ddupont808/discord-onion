@@ -1,0 +1,19 @@
+{
+  "name": "discord-tor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "encdec": "^0.1.3",
+    "express": "^4.16.2",
+    "granax": "^3.1.3",
+    "tor-request": "^1.0.6",
+    "winston": "^3.0.0-rc1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
