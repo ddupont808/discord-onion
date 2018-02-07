@@ -1,4 +1,5 @@
 const globals = require('./globals.js');
+const utils = require('./utils.js');
 
 const tor = require('granax')();
 const express = require('express');
@@ -24,11 +25,13 @@ globals.port = process.env.PORT || globals.port;
 logger.log('info', 'Initializing Tor instance...');
 
 tor.on('ready', function() {
-	tor.createHiddenService('127.0.0.1:8080', (err, result) => {
+	/*tor.createHiddenService('127.0.0.1:8080', (err, result) => {
 		console.info(`Service URL: ${result.serviceId}.onion`);
 		console.info(`Private Key: ${result.privateKey}`);
-
-	});
+		console.log(result.serviceId);
+		console.log(result.serviceId.toUpperCase());
+		console.info('User ID: <@' + utils.b32tob58(result.serviceId) + `> = ${result.serviceId}.onion`);
+	});*/
 	
 	tor.getInfo('net/listeners/socks', (err, result) => {
 		let port = parseInt(result.split('"').join('').split(':')[1]);
