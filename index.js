@@ -21,6 +21,11 @@ const logger = createLogger({
 
 const app = express();
 
+app.use(globals.api_url, require('./routers/api.js'));
+app.use(globals.oauth_url, require('./routers/oauth2.js'));
+
+app.get('/docs', (req, res) => res.redirect('https://discordapp.com/developers/docs/intro'));
+
 globals.port = process.env.PORT || globals.port;
 logger.log('info', 'Initializing Tor instance...');
 
@@ -28,9 +33,8 @@ tor.on('ready', function() {
 	/*tor.createHiddenService('127.0.0.1:8080', (err, result) => {
 		console.info(`Service URL: ${result.serviceId}.onion`);
 		console.info(`Private Key: ${result.privateKey}`);
-		console.log(result.serviceId);
-		console.log(result.serviceId.toUpperCase());
-		console.info('User ID: <@' + utils.b32tob58(result.serviceId) + `> = ${result.serviceId}.onion`);
+		console.info('User ID: <@' + utils.b32toid(result.serviceId) + `> = ${result.serviceId}.onion`);
+		console.info(`${utils.b32toid(result.serviceId)} = ${utils.idtob32(utils.b32toid(result.serviceId))}`);
 	});*/
 	
 	tor.getInfo('net/listeners/socks', (err, result) => {
@@ -46,10 +50,6 @@ tor.on('ready', function() {
 			logger.log('info', '==================');
 			logger.log('info', 'Ready!');
 		});
-	});
-	
-	app.get('/', function (req, res) {
-	  res.send('Hello World');
 	});
 });
  
