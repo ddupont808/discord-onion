@@ -1,6 +1,8 @@
 # discord-onion
 A working node and implementation of a decentralized clone of Discord's API powered by Tor and IPFS
 
+***Anonymity should not be expected in the current version until IPFS gets Tor support or the IPFS dependency is removed!***
+
 ## Getting Started
 
 To create a local development copy of the node, clone the client repository into a directory of your choice:
